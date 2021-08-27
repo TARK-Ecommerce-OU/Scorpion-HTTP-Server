@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/ferret/.dotnet/store/|arch|/|tfm|",
+      "/home/ferret/.nuget/packages"
+    ]
+  }
+}
