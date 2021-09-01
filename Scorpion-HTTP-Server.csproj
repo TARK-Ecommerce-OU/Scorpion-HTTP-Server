@@ -5,6 +5,9 @@
     <RootNamespace>Scorpion_HTTP_Server</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Net.Http" Version="4.3.4"/>
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Scorpion-Network-Driver\Scorpion-Network-Driver.csproj" />
   </ItemGroup>
 </Project>

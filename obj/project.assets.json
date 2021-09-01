@@ -757,6 +757,16 @@
         "compile": {
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
+      },
+      "Scorpion-Network-Driver/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Scorpion-Network-Driver.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Scorpion-Network-Driver.dll": {}
+        }
       }
     }
   },
@@ -2819,10 +2829,16 @@
         "system.threading.tasks.4.3.0.nupkg.sha512",
         "system.threading.tasks.nuspec"
       ]
+    },
+    "Scorpion-Network-Driver/1.0.0": {
+      "type": "project",
+      "path": "Scorpion-Network-Driver/Scorpion-Network-Driver.csproj",
+      "msbuildProject": "Scorpion-Network-Driver/Scorpion-Network-Driver.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Scorpion-Network-Driver >= 1.0.0",
       "System.Net.Http >= 4.3.4"
     ]
   },
@@ -2850,7 +2866,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

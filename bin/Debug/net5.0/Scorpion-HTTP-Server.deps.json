@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v5.0": {
       "Scorpion-HTTP-Server/1.0.0": {
         "dependencies": {
+          "Scorpion-Network-Driver": "1.0.0",
           "System.Net.Http": "4.3.4"
         },
         "runtime": {
@@ -405,6 +406,11 @@
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
         }
+      },
+      "Scorpion-Network-Driver/1.0.0": {
+        "runtime": {
+          "Scorpion-Network-Driver.dll": {}
+        }
       }
     }
   },
@@ -756,6 +762,11 @@
       "sha512": "sha512-LbSxKEdOUhVe8BezB/9uOGGppt+nZf6e1VFyw6v3DN6lqitm0OSn2uXMOdtP0M3W4iMcqcivm2J6UgqiwwnXiA==",
       "path": "system.threading.tasks/4.3.0",
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
+    },
+    "Scorpion-Network-Driver/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
