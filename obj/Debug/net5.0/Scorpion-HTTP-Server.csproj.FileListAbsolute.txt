@@ -1,3 +1,8 @@
+/home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.csproj.AssemblyReference.cache
+/home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.GeneratedMSBuildEditorConfig.editorconfig
+/home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.AssemblyInfoInputs.cache
+/home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.AssemblyInfo.cs
+/home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.csproj.CoreCompileInputs.cache
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net5.0/Scorpion-HTTP-Server
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net5.0/Scorpion-HTTP-Server.deps.json
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net5.0/Scorpion-HTTP-Server.runtimeconfig.json
@@ -7,11 +12,6 @@
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net5.0/Scorpion-HTTP-Server.pdb
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net5.0/Scorpion-Network-Driver.dll
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net5.0/Scorpion-Network-Driver.pdb
-/home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.csproj.AssemblyReference.cache
-/home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.GeneratedMSBuildEditorConfig.editorconfig
-/home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.AssemblyInfoInputs.cache
-/home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.AssemblyInfo.cs
-/home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.csproj.CoreCompileInputs.cache
 /home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.csproj.CopyComplete
 /home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/Scorpion-HTTP-Server.dll
 /home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net5.0/ref/Scorpion-HTTP-Server.dll

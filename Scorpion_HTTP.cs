@@ -1,4 +1,6 @@
-﻿using System;
+﻿//https://stackoverflow.com/questions/61997928/errorcs0579duplicate-globalsystem-runtime-versioning-targetframeworkattribu
+
+using System;
 
 namespace ScorpionHTTPServer
 {
@@ -9,16 +11,15 @@ namespace ScorpionHTTPServer
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Scorpion HTTP Server version {0}", System.Reflection.Assembly.GetExecutingAssembly().ImageRuntimeVersion);
             string command = null;
             bool stop = false;
+
             while(!stop)
             {
                 command = Console.ReadLine().ToLower();
                 if(command == "start")
-                {
-                    Console.WriteLine("Scorpion HTTP Server version {0}", System.Reflection.Assembly.GetExecutingAssembly().ImageRuntimeVersion);
                     http_server = new HTTPServer(args[0], args[1], Convert.ToInt32(args[2]));
-                }
                 else if(command == "stop" && http_server != null)
                     http_server.stopServer();
                 else if(command == "exit")

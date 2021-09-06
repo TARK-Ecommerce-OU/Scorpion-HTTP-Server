@@ -26,6 +26,16 @@ namespace ScorpionHTTPServer
             "    </form>" +
             "  </body>" +
             "</html>";
+        public static string errorPageData = 
+            "<!DOCTYPE>" +
+            "<html>" +
+            "  <head>" +
+            "    <title>Error</title>" +
+            "  </head>" +
+            "  <body>" +
+            "    <p><h1>500 Internal server error</h1><br><hr><br>Incorrect response given</p>" +
+            "  </body>" +
+            "</html>";
 
         public HTTPServer(string prefix, string scorpion_host, int scorpion_port)
         {
@@ -109,15 +119,24 @@ namespace ScorpionHTTPServer
                 byte[] data = null;
                 string[] URL_elements = getPathElements(req);
                 
-                if(req.Url.AbsolutePath == "/")
+                if(req.Url.AbsolutePath != "/")
                     data = Encoding.UTF8.GetBytes(String.Format(pageData, pageViews, disableSubmit));
                 else
-                    data = Encoding.UTF8.GetBytes(await SD.get("http", "feministexperience", "html"));
-
+                {
+                    string command = await SD.get("http", "feministexperience", "html");
+                    if(command == null)
+                    {
+                        Console.WriteLine("Incorrect response given, ignoring...");
+                        data = Encoding.UTF8.GetBytes(errorPageData);
+                    }
+                    else
+                    {
+                        data = Encoding.UTF8.GetBytes(command);
+                    }
+                }
                 resp.ContentType = "text/html";
                 resp.ContentEncoding = Encoding.UTF8;
                 resp.ContentLength64 = data.LongLength;
-
                 // Write out to the response stream (asynchronously), then close it
                 await resp.OutputStream.WriteAsync(data, 0, data.Length);
                 resp.Close();
