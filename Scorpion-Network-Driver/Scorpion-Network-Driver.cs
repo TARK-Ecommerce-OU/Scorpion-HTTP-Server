@@ -2,6 +2,9 @@
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Cauldron.Cryptography;
+using System.Security;
+using System.IO;
 
 namespace ScorpionNetworkDriver
 {
@@ -19,9 +22,12 @@ namespace ScorpionNetworkDriver
 
       public async Task<string> get(string DB, string TAG, string SUBTAG)
       {
-        SCDT.connect();
-        string command = await SCDT.get(nef__.buildQuery(DB, TAG, SUBTAG));
-        SCDT.disconnect();
+        string command = null;
+        if(SCDT.connect())
+        {
+          command = await SCDT.get(nef__.buildQuery(DB, TAG, SUBTAG));
+          SCDT.disconnect();
+        }
         try
         {
           Console.WriteLine("Returning: {0}", command);
@@ -115,13 +121,16 @@ namespace ScorpionNetworkDriver
     class ScorpionDriverTCP
     {
       private static TcpClient scorpion_client;
-      private static int PORT = 5002;
+      private ScorpionRSAMin rSAMin;
+      private static int PORT = 0;
       private static string HOST;
 
       public ScorpionDriverTCP(string host, int port)
       {
         HOST = host;
         PORT = port;
+        //Static file paths only
+        rSAMin = new ScorpionRSAMin("/etc/scorpion/1.ky", "/etc/scorpion/2.ky");
         return;
       }
 
@@ -137,6 +146,9 @@ namespace ScorpionNetworkDriver
           NetworkStream stream = scorpion_client.GetStream();
 
           // Send the message to the connected TcpServer.
+          //RSA encrypt
+          rSAMin.encrypt(data);
+
           stream.Write(data, 0, data.Length);
           Console.WriteLine("Sent: {0}", message);
 
@@ -160,7 +172,7 @@ namespace ScorpionNetworkDriver
         });
       }
 
-      public void connect()
+      public bool connect()
       {
         try
         {
@@ -169,14 +181,17 @@ namespace ScorpionNetworkDriver
           // connected to the same address as specified by the server, port
           // combination.
           scorpion_client = new TcpClient(HOST, PORT);
+          return true;
         }
         catch (ArgumentNullException e)
         {
           Console.WriteLine("ArgumentNullException: {0}", e);
+          return false;
         }
         catch (SocketException e)
         {
           Console.WriteLine("SocketException: {0}", e);
+          return false;
         }
       }
 
@@ -184,5 +199,46 @@ namespace ScorpionNetworkDriver
       {
           scorpion_client.Close();
       }
+    }
+
+    class ScorpionRSAMin
+    {
+      private SecureString private_key_path = null;
+      private SecureString public_key_path = null;
+
+      public ScorpionRSAMin(string public_key_path_, string private_key_path_)
+      {
+        //check files exist
+        if(!File.Exists(public_key_path_) || !File.Exists(private_key_path_))
+        {
+          Console.WriteLine("No keys found, returning");
+          return;
+        }
+        private_key_path = Cauldron.ExtensionsCryptography.ToSecureString(private_key_path_);
+        public_key_path = Cauldron.ExtensionsCryptography.ToSecureString(public_key_path_);
+      }
+
+        private static SecureString read_privatekey_file(ref string path)
+        {
+            byte[] b_rsa = File.ReadAllBytes(path);
+            SecureString ss = Cauldron.ExtensionsCryptography.ToSecureString(System.Text.Encoding.UTF8.GetString(b_rsa));
+            return ss;
+        }
+
+        private static string read_publickey_file(ref string path)
+        {
+            byte[] b_rsa = File.ReadAllBytes(path);
+            return System.Text.Encoding.UTF8.GetString(b_rsa);
+        }
+
+        public byte[] decrypt(SecureString private_key, byte[] data)
+        {
+            return Rsa.Decrypt(private_key_path, data);
+        }
+
+        public byte[] encrypt(string path, string data)
+        {
+            return Rsa.Encrypt(read_publickey_file(ref path), data);
+        }
     }
 }

@@ -1,10 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <RootNamespace>Scorpion_Network_Driver</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Capgemini.Cauldron.Cryptography" Version="3.2.3"/>
+    <PackageReference Include="Cauldron" Version="2.0.0"/>
+  </ItemGroup>
 </Project>

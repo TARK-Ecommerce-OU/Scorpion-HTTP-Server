@@ -13,29 +13,6 @@ namespace ScorpionHTTPServer
         public static int pageViews = 0;
         public static int requestCount = 0;
         public static ScorpionDriver SD;
-        public static string pageData = 
-            "<!DOCTYPE>" +
-            "<html>" +
-            "  <head>" +
-            "    <title>HttpListener Example</title>" +
-            "  </head>" +
-            "  <body>" +
-            "    <p>Page Views: {0}</p>" +
-            "    <form method=\"post\" action=\"shutdown\">" +
-            "      <input type=\"submit\" value=\"Shutdown\" {1}>" +
-            "    </form>" +
-            "  </body>" +
-            "</html>";
-        public static string errorPageData = 
-            "<!DOCTYPE>" +
-            "<html>" +
-            "  <head>" +
-            "    <title>Error</title>" +
-            "  </head>" +
-            "  <body>" +
-            "    <p><h1>500 Internal server error</h1><br><hr><br>Incorrect response given</p>" +
-            "  </body>" +
-            "</html>";
 
         public HTTPServer(string prefix, string scorpion_host, int scorpion_port)
         {
@@ -104,10 +81,10 @@ namespace ScorpionHTTPServer
                 Console.WriteLine(req.RawUrl[0]);
 
                 // If `shutdown` url requested w/ POST, then shutdown the server after serving the page
-                if ((req.HttpMethod == "POST") && (req.Url.AbsolutePath == "/shutdown"))
+                if ((req.HttpMethod == "POST") && (req.Url.AbsolutePath == "/input"))
                 {
-                    Console.WriteLine("Shutdown requested");
-                    runServer = false;
+                    //Console.WriteLine("Shutdown requested");
+                    //runServer = false;
                 }
 
                 // Make sure we don't increment the page views counter if `favicon.ico` is requested
@@ -120,25 +97,30 @@ namespace ScorpionHTTPServer
                 string[] URL_elements = getPathElements(req);
                 
                 if(req.Url.AbsolutePath != "/")
-                    data = Encoding.UTF8.GetBytes(String.Format(pageData, pageViews, disableSubmit));
-                else
                 {
-                    string command = await SD.get("http", "feministexperience", "html");
-                    if(command == null)
+                    string structure = await SD.get("http", URL_elements[0], "html");
+                    string logic = await SD.get("http", URL_elements[0], "logic");
+                    string css = await SD.get("http", URL_elements[0], "css");
+
+                    if(structure == null)
                     {
-                        Console.WriteLine("Incorrect response given, ignoring...");
-                        data = Encoding.UTF8.GetBytes(errorPageData);
+                        Console.WriteLine("Incorrect response given, sending 500 page");
+                        data = Encoding.UTF8.GetBytes(StaticElements.StaticElements.errorPageData);
                     }
                     else
                     {
-                        data = Encoding.UTF8.GetBytes(command);
+                        data = Encoding.UTF8.GetBytes(string.Format(StaticElements.StaticElements.developmentFormatData, (structure == null ? "" : structure), (css == null ? "" : css), (logic == null ? "" : logic)));
                     }
                 }
-                resp.ContentType = "text/html";
-                resp.ContentEncoding = Encoding.UTF8;
-                resp.ContentLength64 = data.LongLength;
-                // Write out to the response stream (asynchronously), then close it
-                await resp.OutputStream.WriteAsync(data, 0, data.Length);
+
+                if(data != null)
+                {
+                    resp.ContentType = "text/html";
+                    resp.ContentEncoding = Encoding.UTF8;
+                    resp.ContentLength64 = data.LongLength;
+                    // Write out to the response stream (asynchronously), then close it
+                    await resp.OutputStream.WriteAsync(data, 0, data.Length);
+                }
                 resp.Close();
             }
         }
