@@ -18,8 +18,8 @@ namespace ScorpionHTTPServer
             while(!stop)
             {
                 command = Console.ReadLine().ToLower();
-                if(command == "start")
-                    http_server = new HTTPServer(args[0], args[1], Convert.ToInt32(args[2]));
+                if(command == "start" && args.Length == 4)
+                    http_server = new HTTPServer(args[0], args[1], Convert.ToInt32(args[2]), args[3]);
                 else if(command == "stop" && http_server != null)
                     http_server.stopServer();
                 else if(command == "exit")
@@ -30,7 +30,7 @@ namespace ScorpionHTTPServer
                     stop = true;
                 }
                 else
-                    Console.WriteLine("Please start the server if you would wish to stop it");
+                    Console.WriteLine("An error occured, please make sure the command you entered exists or that you entered the correct startup variables:\n\n<???> <???> <???> <???>");
             }
             return;
         }

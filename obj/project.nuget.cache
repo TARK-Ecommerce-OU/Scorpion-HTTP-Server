@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7LuM318GPBQB9+IamHv8TPzealm/nVo2TsiTW2gpMZ7U2nYDQxhQBmCBnv9/SHaxZooHF9A4feZ+ESMHTjGypQ==",
+  "dgSpecHash": "n9lt4k+jo2KaHRwC8XCQ50GnbzC+Y9Kpdk5s1O1x+4S1qzD1KPMWcub+wxZUlfsKDWls4XuocXmaN6gMzVJeBQ==",
   "success": true,
   "projectFilePath": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-HTTP-Server.csproj",
   "expectedPackageFiles": [
@@ -76,6 +76,7 @@
     "/home/ferret/.nuget/packages/system.diagnostics.tools/4.0.1/system.diagnostics.tools.4.0.1.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.diagnostics.tracing/4.3.0/system.diagnostics.tracing.4.3.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.dynamic.runtime/4.0.11/system.dynamic.runtime.4.0.11.nupkg.sha512",
+    "/home/ferret/.nuget/packages/system.formats.asn1/5.0.0/system.formats.asn1.5.0.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.globalization/4.3.0/system.globalization.4.3.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.globalization.calendars/4.3.0/system.globalization.calendars.4.3.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.globalization.extensions/4.3.0/system.globalization.extensions.4.3.0.nupkg.sha512",
@@ -123,7 +124,7 @@
     "/home/ferret/.nuget/packages/system.security.cryptography.cng/4.3.0/system.security.cryptography.cng.4.3.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.security.cryptography.csp/4.3.0/system.security.cryptography.csp.4.3.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.security.cryptography.encoding/4.3.0/system.security.cryptography.encoding.4.3.0.nupkg.sha512",
-    "/home/ferret/.nuget/packages/system.security.cryptography.openssl/4.3.0/system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "/home/ferret/.nuget/packages/system.security.cryptography.openssl/5.0.0/system.security.cryptography.openssl.5.0.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.security.cryptography.primitives/4.3.0/system.security.cryptography.primitives.4.3.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.security.cryptography.x509certificates/4.3.0/system.security.cryptography.x509certificates.4.3.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.security.principal/4.0.1/system.security.principal.4.0.1.nupkg.sha512",
@@ -145,7 +146,10 @@
     "/home/ferret/.nuget/packages/system.xml.xdocument/4.0.11/system.xml.xdocument.4.0.11.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.xml.xmldocument/4.0.1/system.xml.xmldocument.4.0.1.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.xml.xpath/4.0.1/system.xml.xpath.4.0.1.nupkg.sha512",
-    "/home/ferret/.nuget/packages/system.xml.xpath.xdocument/4.0.1/system.xml.xpath.xdocument.4.0.1.nupkg.sha512"
+    "/home/ferret/.nuget/packages/system.xml.xpath.xdocument/4.0.1/system.xml.xpath.xdocument.4.0.1.nupkg.sha512",
+    "/home/ferret/.nuget/packages/microsoft.netcore.app.ref/5.0.0/microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
+    "/home/ferret/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "/home/ferret/.nuget/packages/microsoft.netcore.app.host.linux-x64/5.0.12/microsoft.netcore.app.host.linux-x64.5.0.12.nupkg.sha512"
   ],
   "logs": [
     {

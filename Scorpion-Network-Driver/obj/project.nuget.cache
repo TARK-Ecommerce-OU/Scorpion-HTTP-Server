@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "105WXNIHlL31O+1rF1n7vxGIzBWyfqJ+svvZyvgyV6cAyJ7aG91+CTztzXYy77NqKC3urivtW9QdfcZxGVR+Lw==",
+  "dgSpecHash": "pFCL2DxUDfroyNQdhAieJb3A9QB7JOgEZ4zRcXr2xIhuxIhUDftzg2pz6OOaUQBY2GUEQTX6b+HlHAS7OAxNjQ==",
   "success": true,
   "projectFilePath": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj",
   "expectedPackageFiles": [
@@ -132,7 +132,9 @@
     "/home/ferret/.nuget/packages/system.xml.xdocument/4.0.11/system.xml.xdocument.4.0.11.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.xml.xmldocument/4.0.1/system.xml.xmldocument.4.0.1.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.xml.xpath/4.0.1/system.xml.xpath.4.0.1.nupkg.sha512",
-    "/home/ferret/.nuget/packages/system.xml.xpath.xdocument/4.0.1/system.xml.xpath.xdocument.4.0.1.nupkg.sha512"
+    "/home/ferret/.nuget/packages/system.xml.xpath.xdocument/4.0.1/system.xml.xpath.xdocument.4.0.1.nupkg.sha512",
+    "/home/ferret/.nuget/packages/microsoft.netcore.app.ref/5.0.0/microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
+    "/home/ferret/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
   ],
   "logs": [
     {

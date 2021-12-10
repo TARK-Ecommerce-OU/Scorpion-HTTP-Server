@@ -13,15 +13,17 @@ namespace ScorpionHTTPServer
         public static int pageViews = 0;
         public static int requestCount = 0;
         public static ScorpionDriver SD;
+        private static string DB = null;
 
-        public HTTPServer(string prefix, string scorpion_host, int scorpion_port)
+        public HTTPServer(string prefix, string scorpion_host, int scorpion_port, string scorpion_db)
         {
             //Start the scorpion driver in order to get data from MicroDB
             SD = new ScorpionDriver(scorpion_host, scorpion_port);
+            DB = scorpion_db;
 
             //Start the HTTP server
             if(!startServer(prefix == "null" ? null : prefix))
-                Console.WriteLine("Unable to start the HTTP server as the HTTPListener module is not supported by your system.");
+                Console.WriteLine("Unable to start the HTTP server as the HTTPListener module is not supported by your system.You may try configuring your server and try running the HTTP server again\n\nexiting server...");
             return;
         }
 
@@ -31,20 +33,10 @@ namespace ScorpionHTTPServer
                 return false;
             scorpion_http_listener = new HttpListener();
 
-            //Adds the default prefix is none is given in the arguments when starting the applicaion
-            if(prefix == null)
-            {
-                scorpion_http_listener.Prefixes.Add(url);
-                current_prefix = url;
-            }
-            else
-            {
-                scorpion_http_listener.Prefixes.Add(prefix);
-                current_prefix = prefix;
-            }
-
+            //Adds the default prefix is none is given in the arguments when starting the application and starts the HTTP server
+            scorpion_http_listener.Prefixes.Add(prefix = (prefix == null ? url : prefix));
             scorpion_http_listener.Start();
-            Console.WriteLine("HTTP server started with prefix: {0}", current_prefix);
+            Console.WriteLine("HTTP server started with prefix: {0}", prefix);
 
             //Handle incomming connections
             Task listen_task = handleIncomingConnections(); 
@@ -79,8 +71,10 @@ namespace ScorpionHTTPServer
                 Console.WriteLine(req.UserHostName);
                 Console.WriteLine(req.UserAgent);
                 Console.WriteLine(req.RawUrl[0]);
+                Console.WriteLine(req.Url.AbsolutePath);
 
                 // If `shutdown` url requested w/ POST, then shutdown the server after serving the page
+                //Handles input
                 if ((req.HttpMethod == "POST") && (req.Url.AbsolutePath == "/input"))
                 {
                     //Console.WriteLine("Shutdown requested");
@@ -96,11 +90,13 @@ namespace ScorpionHTTPServer
                 byte[] data = null;
                 string[] URL_elements = getPathElements(req);
                 
+                //Page request
                 if(req.Url.AbsolutePath != "/")
                 {
-                    string structure = await SD.get("http", URL_elements[0], "html");
-                    string logic = await SD.get("http", URL_elements[0], "logic");
-                    string css = await SD.get("http", URL_elements[0], "css");
+                    Console.WriteLine("--Page request-->");
+                    string structure = await SD.get(DB, URL_elements[0], "structure");
+                    string logic = await SD.get(DB, URL_elements[0], "logic");
+                    string css = await SD.get(DB, URL_elements[0], "visuals");
 
                     if(structure == null)
                     {
@@ -108,9 +104,7 @@ namespace ScorpionHTTPServer
                         data = Encoding.UTF8.GetBytes(StaticElements.StaticElements.errorPageData);
                     }
                     else
-                    {
-                        data = Encoding.UTF8.GetBytes(string.Format(StaticElements.StaticElements.developmentFormatData, (structure == null ? "" : structure), (css == null ? "" : css), (logic == null ? "" : logic)));
-                    }
+                        data = Encoding.UTF8.GetBytes(string.Format(StaticElements.StaticElements.developmentFormatData, (structure == null ? "" : structure), (css == null ? "" : "<style>" + css + "</style>"), (logic == null ? "" : "<script>" + logic + "</script>")));
                 }
 
                 if(data != null)

@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Cauldron.Cryptography;
+using System.Security.Cryptography;
 using System.Security;
 using System.IO;
 
@@ -30,7 +31,8 @@ namespace ScorpionNetworkDriver
         }
         try
         {
-          Console.WriteLine("Returning: {0}", command);
+          //Console.WriteLine("Returning: {0}", command);
+          Console.WriteLine("\n--------DATA---------\nReturning DATA: {0}---------------------\n", nef__.replaceApiResponse(command)["data"]);
           return nef__.replaceApiResponse(command)["data"];
         }
         catch{ return null; }
@@ -39,6 +41,8 @@ namespace ScorpionNetworkDriver
 
     class NetworkEngineFunctions
     {
+        private static readonly string[] S_ESCAPE_SEQUENCES = {};
+
         private static readonly Dictionary<string, string[]> api = new Dictionary<string, string[]> 
         {
             { "scorpion", new string[]{ "{&scorpion}", "{&/scorpion}" } },
@@ -55,7 +59,7 @@ namespace ScorpionNetworkDriver
             { "get", "get" },
             { "set", "set" },
             { "response", "response" }
-                };
+        };
 
         private readonly Dictionary<string, string> api_result = new Dictionary<string, string>
         {
@@ -130,7 +134,7 @@ namespace ScorpionNetworkDriver
         HOST = host;
         PORT = port;
         //Static file paths only
-        rSAMin = new ScorpionRSAMin("/etc/scorpion/1.ky", "/etc/scorpion/2.ky");
+        rSAMin = new ScorpionRSAMin("/etc/scorpion/public.ky", "/etc/scorpion/private.ky");
         return;
       }
 
@@ -146,26 +150,51 @@ namespace ScorpionNetworkDriver
           NetworkStream stream = scorpion_client.GetStream();
 
           // Send the message to the connected TcpServer.
-          //RSA encrypt
-          rSAMin.encrypt(data);
+
+          //RSA encrypt using the public key
+          //rSAMin.encrypt(data);
 
           stream.Write(data, 0, data.Length);
-          Console.WriteLine("Sent: {0}", message);
+          Console.WriteLine("\n--------SENT---------\n{0}\n---------------------\n", message);
 
           // Receive the TcpServer.response.
 
           // Buffer to store the response bytes.
-          data = new Byte[256];
+          int dat_size = 256;
+          data = new Byte[dat_size];
 
           // String to store the response ASCII representation.
           String responseData = String.Empty;
 
           // Read the first batch of the TcpServer response bytes.
-          Int32 bytes = stream.Read(data, 0, data.Length);
-          responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-          Console.WriteLine("Received: {0}", responseData);
+          //Int32 bytes = stream.Read(data, 0, data.Length);
 
-          // Close everything.
+          //Create temporary byte to store read bytes in
+          int tmpb = 0x00; int n = 0;
+          while((tmpb = stream.ReadByte()) != -1)
+          {
+            //Expand array if not long enough
+            if((data.Length) == n)
+            {
+              dat_size += 256;
+              Array.Resize<byte>(ref data, dat_size);
+            }
+
+            data[n] = (byte)tmpb;
+
+            //Reset temporary byte
+            tmpb = 0x00;
+
+            n++;
+          }
+
+          //Decrypt using the private RSA key
+          //rSAMin.decrypt(data);
+
+          responseData = System.Text.Encoding.ASCII.GetString(data, 0, /*bytes*/n);
+          Console.WriteLine("\n--------RECV---------\n{0}\n---------------------\n", responseData);
+
+          //Close stream.
           stream.Flush();
           stream.Close();
           return responseData;
@@ -204,7 +233,8 @@ namespace ScorpionNetworkDriver
     class ScorpionRSAMin
     {
       private SecureString private_key_path = null;
-      private SecureString public_key_path = null;
+      private string public_key_path = null;
+      private RSAParameters RSA_param;
 
       public ScorpionRSAMin(string public_key_path_, string private_key_path_)
       {
@@ -215,7 +245,7 @@ namespace ScorpionNetworkDriver
           return;
         }
         private_key_path = Cauldron.ExtensionsCryptography.ToSecureString(private_key_path_);
-        public_key_path = Cauldron.ExtensionsCryptography.ToSecureString(public_key_path_);
+        public_key_path = public_key_path_;
       }
 
         private static SecureString read_privatekey_file(ref string path)
@@ -231,14 +261,14 @@ namespace ScorpionNetworkDriver
             return System.Text.Encoding.UTF8.GetString(b_rsa);
         }
 
-        public byte[] decrypt(SecureString private_key, byte[] data)
+        public byte[] decrypt(byte[] data)
         {
             return Rsa.Decrypt(private_key_path, data);
         }
 
-        public byte[] encrypt(string path, string data)
+        public byte[] encrypt(byte[] data)
         {
-            return Rsa.Encrypt(read_publickey_file(ref path), data);
+            return Rsa.Encrypt(read_publickey_file(ref public_key_path), data);
         }
     }
 }
