@@ -2,9 +2,7 @@
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Cauldron.Cryptography;
 using System.Security.Cryptography;
-using System.Security;
 using System.IO;
 
 namespace ScorpionNetworkDriver
@@ -13,6 +11,7 @@ namespace ScorpionNetworkDriver
     {
       private static ScorpionDriverTCP SCDT;
       private static NetworkEngineFunctions nef__;
+      private static ScorpionPooling.ScorpionPooling SP;
 
       public ScorpionDriver(string host, int port)
       {
@@ -133,6 +132,7 @@ namespace ScorpionNetworkDriver
       {
         HOST = host;
         PORT = port;
+
         //Static file paths only
         rSAMin = new ScorpionRSAMin("/etc/scorpion/public.ky", "/etc/scorpion/private.ky");
         return;
@@ -141,22 +141,23 @@ namespace ScorpionNetworkDriver
       public async Task<string> get(string message)
       {
         return await Task.Run(() => {
-          // Translate the passed message into ASCII and store it as a Byte array.
+          //Translate the passed message into ASCII and store it as a Byte array.
           Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
 
-          // Get a client stream for reading and writing.
-          //  Stream stream = client.GetStream();
+          //Get a client stream for reading and writing.
+          //Stream stream = client.GetStream();
 
           NetworkStream stream = scorpion_client.GetStream();
 
-          // Send the message to the connected TcpServer.
+          //Send the message to the connected TcpServer.
 
           //RSA encrypt using the public key
-          //rSAMin.encrypt(data);
+          //Console.WriteLine(data[0]);
+          //data = rSAMin.encrypt(data);
 
           stream.Write(data, 0, data.Length);
           Console.WriteLine("\n--------SENT---------\n{0}\n---------------------\n", message);
-
+          //Console.WriteLine(data[0]);
           // Receive the TcpServer.response.
 
           // Buffer to store the response bytes.
@@ -185,11 +186,12 @@ namespace ScorpionNetworkDriver
             //Reset temporary byte
             tmpb = 0x00;
 
+            //Upone
             n++;
           }
 
           //Decrypt using the private RSA key
-          //rSAMin.decrypt(data);
+          //data = rSAMin.decrypt(data);
 
           responseData = System.Text.Encoding.ASCII.GetString(data, 0, /*bytes*/n);
           Console.WriteLine("\n--------RECV---------\n{0}\n---------------------\n", responseData);
@@ -232,9 +234,8 @@ namespace ScorpionNetworkDriver
 
     class ScorpionRSAMin
     {
-      private SecureString private_key_path = null;
+      private string private_key_path = null;
       private string public_key_path = null;
-      private RSAParameters RSA_param;
 
       public ScorpionRSAMin(string public_key_path_, string private_key_path_)
       {
@@ -244,31 +245,37 @@ namespace ScorpionNetworkDriver
           Console.WriteLine("No keys found, returning");
           return;
         }
-        private_key_path = Cauldron.ExtensionsCryptography.ToSecureString(private_key_path_);
+        private_key_path = private_key_path_;//Cauldron.ExtensionsCryptography.ToSecureString(private_key_path_);
         public_key_path = public_key_path_;
       }
 
-        private static SecureString read_privatekey_file(ref string path)
+        private static byte[] read_privatekey_file(ref string path)
         {
-            byte[] b_rsa = File.ReadAllBytes(path);
-            SecureString ss = Cauldron.ExtensionsCryptography.ToSecureString(System.Text.Encoding.UTF8.GetString(b_rsa));
-            return ss;
+          return System.Text.Encoding.UTF8.GetBytes(File.ReadAllText(path));
         }
 
-        private static string read_publickey_file(ref string path)
+        private static byte[] read_publickey_file(ref string path)
         {
-            byte[] b_rsa = File.ReadAllBytes(path);
-            return System.Text.Encoding.UTF8.GetString(b_rsa);
+          return System.Text.Encoding.UTF8.GetBytes(File.ReadAllText(path));
         }
 
         public byte[] decrypt(byte[] data)
         {
-            return Rsa.Decrypt(private_key_path, data);
+            //return Rsa.Decrypt(private_key_path, data);
+            using(var rsa = RSAOpenSsl.Create())
+            {
+              rsa.ImportFromPem(File.ReadAllText(private_key_path));
+              return rsa.Decrypt(data, RSAEncryptionPadding.Pkcs1);
+            }
         }
 
         public byte[] encrypt(byte[] data)
         {
-            return Rsa.Encrypt(read_publickey_file(ref public_key_path), data);
+            using(var rsa = RSAOpenSsl.Create())
+            {
+              rsa.ImportFromPem(File.ReadAllText(public_key_path));
+              return rsa.Encrypt(data, RSAEncryptionPadding.Pkcs1);
+            }
         }
     }
 }

@@ -9,7 +9,8 @@ namespace ScorpionHTTPServer
     class HTTPServer
     {
         private static HttpListener scorpion_http_listener;
-        public static string url = "http://localhost:8000/"; private string current_prefix = null;
+        public static string url = "http://localhost:8000/"; 
+        //private string current_prefix = null;
         public static int pageViews = 0;
         public static int requestCount = 0;
         public static ScorpionDriver SD;
@@ -84,6 +85,8 @@ namespace ScorpionHTTPServer
                 // Make sure we don't increment the page views counter if `favicon.ico` is requested
                 if (req.Url.AbsolutePath != "/favicon.ico")
                     pageViews += 1;
+                else
+                    continue;
 
                 // Write the response info
                 string disableSubmit = !runServer ? "disabled" : "";
@@ -94,17 +97,16 @@ namespace ScorpionHTTPServer
                 if(req.Url.AbsolutePath != "/")
                 {
                     Console.WriteLine("--Page request-->");
-                    string structure = await SD.get(DB, URL_elements[0], "structure");
-                    string logic = await SD.get(DB, URL_elements[0], "logic");
-                    string css = await SD.get(DB, URL_elements[0], "visuals");
+                    string request_elements = await SD.get(DB, URL_elements[0], URL_elements[1]);
+                    //string page = await SD.get(DB, URL_elements[2], URL_elements[2]);
 
-                    if(structure == null)
+                    if(request_elements == null)
                     {
                         Console.WriteLine("Incorrect response given, sending 500 page");
                         data = Encoding.UTF8.GetBytes(StaticElements.StaticElements.errorPageData);
                     }
                     else
-                        data = Encoding.UTF8.GetBytes(string.Format(StaticElements.StaticElements.developmentFormatData, (structure == null ? "" : structure), (css == null ? "" : "<style>" + css + "</style>"), (logic == null ? "" : "<script>" + logic + "</script>")));
+                        data = Encoding.UTF8.GetBytes(string.Format(StaticElements.StaticElements.developmentFormatData, (request_elements == null ? "" : request_elements)));
                 }
 
                 if(data != null)
@@ -112,7 +114,8 @@ namespace ScorpionHTTPServer
                     resp.ContentType = "text/html";
                     resp.ContentEncoding = Encoding.UTF8;
                     resp.ContentLength64 = data.LongLength;
-                    // Write out to the response stream (asynchronously), then close it
+
+                    //Write out to the response stream (asynchronously), then close it
                     await resp.OutputStream.WriteAsync(data, 0, data.Length);
                 }
                 resp.Close();
