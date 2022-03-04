@@ -1,6 +1,4 @@
-﻿//https://stackoverflow.com/questions/61997928/errorcs0579duplicate-globalsystem-runtime-versioning-targetframeworkattribu
-
-using System;
+﻿using System;
 
 namespace ScorpionHTTPServer
 {
@@ -8,31 +6,29 @@ namespace ScorpionHTTPServer
     {
         //The main HTTP server serving this application
         private static HTTPServer http_server;
-
         static void Main(string[] args)
         {
+            Console.CancelKeyPress += Console_CancelKeyPress;
             Console.WriteLine("Scorpion HTTP Server version {0}", System.Reflection.Assembly.GetExecutingAssembly().ImageRuntimeVersion);
             string command = null;
-            bool stop = false;
 
-            while(!stop)
+            while(true)
             {
                 command = Console.ReadLine().ToLower();
-                if(command == "start" && args.Length == 4)
-                    http_server = new HTTPServer(args[0], args[1], Convert.ToInt32(args[2]), args[3]);
-                else if(command == "stop" && http_server != null)
-                    http_server.stopServer();
-                else if(command == "exit")
+                if(command == "start")
                 {
-                    //Check if http_server is instantiated, if yes then stop the server else skip
-                    if(http_server != null)
-                        http_server.stopServer();
-                    stop = true;
+                    if(args.Length == 4)
+                        http_server = new HTTPServer(args[0], args[1], Convert.ToInt32(args[2]), args[3]);
+                    else
+                        Console.WriteLine("The 'start' command was issued with the wrong set of arguments. Required arguments are: <prefix> <scorpion IEE server IP> <scorpion IEE port> <database name>");
                 }
-                else
-                    Console.WriteLine("An error occured, please make sure the command you entered exists or that you entered the correct startup variables:\n\n<???> <???> <???> <???>");
             }
-            return;
+        }
+
+        static void Console_CancelKeyPress(object o, ConsoleCancelEventArgs e)
+        {
+            Console.WriteLine("Interrupt Signal. Exiting...");
+            Environment.Exit(0);
         }
     }
 }

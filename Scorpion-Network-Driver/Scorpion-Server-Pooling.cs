@@ -6,19 +6,30 @@ namespace ScorpionPooling
     {
         //Future: calculate distance by latency, choose fastest
 
-        private struct available_server {
+        private struct available_server 
+        {
             string name;
             string ip;
             int port;
             bool alive;
         };
 
-        public ScorpionPooling(){
-            find_servers();
+        private available_server[] pool = new available_server[5]; 
+
+        public ScorpionPooling()
+        {
+            findServers();
         }
 
-        private void find_servers(){
+        private void findServers()
+        {
             
         }
+
+        /*public available_server getBestServer()
+        {
+
+            return null;
+        }*/
     }
 }

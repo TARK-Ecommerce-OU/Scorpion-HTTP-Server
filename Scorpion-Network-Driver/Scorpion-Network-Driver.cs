@@ -138,6 +138,11 @@ namespace ScorpionNetworkDriver
         return;
       }
 
+      public async Task<bool> post(string input)
+      {
+        
+      }
+
       public async Task<string> get(string message)
       {
         return await Task.Run(() => {

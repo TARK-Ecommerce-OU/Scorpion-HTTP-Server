@@ -2,15 +2,26 @@ namespace StaticElements
 {
     public static class StaticElements
     {
-        public static string errorPageData = 
+        public static readonly string errorPageData = 
             "<!DOCTYPE html>" +
             "<html>" +
             "  <head>" +
             "<meta charset='UTF-8'>" +
-            "    <title>500 Error</title>" +
+            "    <title>500 Server error</title>" +
             "  </head>" +
             "  <body>" +
             "    <p><h1>:( 500 Internal server error</h1><br><hr><br>Incorrect response given. The server responded with no recognizable data.</p>" +
+            "  </body>" +
+            "</html>";
+        public static readonly string urlerrorPageData = 
+            "<!DOCTYPE html>" +
+            "<html>" +
+            "  <head>" +
+            "<meta charset='UTF-8'>" +
+            "    <title>500 : Server error</title>" +
+            "  </head>" +
+            "  <body>" +
+            "    <p><h1>:( 500 Internal server error</h1><br><hr><br>URL parameters incorrect. 2 parameters expected, less given.</p>" +
             "  </body>" +
             "</html>";
 

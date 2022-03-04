@@ -74,12 +74,27 @@ namespace ScorpionHTTPServer
                 Console.WriteLine(req.RawUrl[0]);
                 Console.WriteLine(req.Url.AbsolutePath);
 
-                // If `shutdown` url requested w/ POST, then shutdown the server after serving the page
-                //Handles input
-                if ((req.HttpMethod == "POST") && (req.Url.AbsolutePath == "/input"))
+                //Create a workable string out of the url seperating elements withing '/'
+                string[] URL_elements = getPathElements(req);
+
+                //Response vars
+                string disableSubmit = !runServer ? "disabled" : "";
+                byte[] data = null;
+
+                //If url not long enough error
+                if(URL_elements.Length < 2)
                 {
-                    //Console.WriteLine("Shutdown requested");
-                    //runServer = false;
+                    data = Encoding.UTF8.GetBytes(StaticElements.StaticElements.urlerrorPageData);
+                    await writeResponse(data, resp);
+                    continue;
+                }
+
+                /*If `shutdown` url requested w/ POST, then shutdown the server after serving the page
+                Handles input*/
+                if ((req.HttpMethod == "POST"))
+                {
+                    Console.WriteLine("--Input request-->");
+                    continue;
                 }
 
                 // Make sure we don't increment the page views counter if `favicon.ico` is requested
@@ -87,16 +102,11 @@ namespace ScorpionHTTPServer
                     pageViews += 1;
                 else
                     continue;
-
-                // Write the response info
-                string disableSubmit = !runServer ? "disabled" : "";
-                byte[] data = null;
-                string[] URL_elements = getPathElements(req);
                 
-                //Page request
+                //Page GET request
                 if(req.Url.AbsolutePath != "/")
                 {
-                    Console.WriteLine("--Page request-->");
+                    Console.WriteLine("--Page/script request-->");
                     string request_elements = await SD.get(DB, URL_elements[0], URL_elements[1]);
                     //string page = await SD.get(DB, URL_elements[2], URL_elements[2]);
 
@@ -108,18 +118,22 @@ namespace ScorpionHTTPServer
                     else
                         data = Encoding.UTF8.GetBytes(string.Format(StaticElements.StaticElements.developmentFormatData, (request_elements == null ? "" : request_elements)));
                 }
-
-                if(data != null)
-                {
-                    resp.ContentType = "text/html";
-                    resp.ContentEncoding = Encoding.UTF8;
-                    resp.ContentLength64 = data.LongLength;
-
-                    //Write out to the response stream (asynchronously), then close it
-                    await resp.OutputStream.WriteAsync(data, 0, data.Length);
-                }
-                resp.Close();
+                await writeResponse(data, resp);
             }
+        }
+
+        public static async Task writeResponse(byte[] data, HttpListenerResponse resp)
+        {
+            if(data != null)
+            {
+                resp.ContentType = "text/html";
+                resp.ContentEncoding = Encoding.UTF8;
+                resp.ContentLength64 = data.LongLength;
+
+                //Write out to the response stream (asynchronously), then close it
+                await resp.OutputStream.WriteAsync(data, 0, data.Length);
+            }
+            resp.Close();
         }
 
         public static string[] getPathElements(HttpListenerRequest request)
