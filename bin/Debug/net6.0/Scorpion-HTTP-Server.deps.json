@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Scorpion-HTTP-Server/1.0.0": {
         "dependencies": {
+          "SCSESSH": "1.0.0",
           "Scorpion-Network-Driver": "1.0.0",
           "System.Net.Http": "4.3.4",
           "System.Security.Cryptography.OpenSsl": "5.0.0"
@@ -404,6 +405,11 @@
         "runtime": {
           "Scorpion-Network-Driver.dll": {}
         }
+      },
+      "SCSESSH/1.0.0": {
+        "runtime": {
+          "SCSESSH.dll": {}
+        }
       }
     }
   },
@@ -764,6 +770,11 @@
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
     },
     "Scorpion-Network-Driver/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SCSESSH/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

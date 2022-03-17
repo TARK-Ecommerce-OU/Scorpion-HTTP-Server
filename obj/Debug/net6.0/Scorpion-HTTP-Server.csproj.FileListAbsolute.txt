@@ -16,3 +16,5 @@
 /home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net6.0/ref/Scorpion-HTTP-Server.dll
 /home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net6.0/Scorpion-HTTP-Server.pdb
 /home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net6.0/Scorpion-HTTP-Server.genruntimeconfig.cache
+/home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/SCSESSH.dll
+/home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/SCSESSH.pdb

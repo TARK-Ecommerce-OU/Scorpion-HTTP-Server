@@ -9,6 +9,7 @@ namespace ScorpionHTTPServer
     class HTTPServer
     {
         private static HttpListener scorpion_http_listener;
+        private static ScorpionHttpSessions.ScorpionHttpSessions scorpion_sessions;
         public static string url = "http://localhost:8000/"; 
         //private string current_prefix = null;
         public static int pageViews = 0;
@@ -20,6 +21,7 @@ namespace ScorpionHTTPServer
         {
             //Start the scorpion driver in order to get data from MicroDB
             SD = new ScorpionDriver(scorpion_host, scorpion_port);
+            scorpion_sessions = new ScorpionHttpSessions.ScorpionHttpSessions();
             DB = scorpion_db;
 
             //Start the HTTP server
@@ -53,7 +55,10 @@ namespace ScorpionHTTPServer
 
         public static async Task handleIncomingConnections()
         {
+            //URL FORMAT GET: /project/page/hash/
+
             bool runServer = true;
+            string session;
 
             // While a user hasn't visited the `shutdown` url, keep on handling requests
             while (runServer)
@@ -76,6 +81,20 @@ namespace ScorpionHTTPServer
 
                 //Create a workable string out of the url seperating elements withing '/'
                 string[] URL_elements = getPathElements(req);
+
+                //Check if user hash exists, if not apply a new one
+                if(URL_elements.Length < 3)
+                    //If there is no hash, create new
+                    session = scorpion_sessions.newSession(URL_elements[0]);
+                else
+                {
+                    //If there is a hash, get path
+                    if(!scorpion_sessions.verifySession(URL_elements[2]))
+                    {
+                        await writeResponse(Encoding.UTF8.GetBytes(StaticElements.StaticElements.errorPageData), resp);
+                        continue;
+                    }
+                }
 
                 //Response vars
                 string disableSubmit = !runServer ? "disabled" : "";
@@ -103,12 +122,11 @@ namespace ScorpionHTTPServer
                 else
                     continue;
                 
-                //Page GET request
+                //Page GET request: /Project/Page/Hash
                 if(req.Url.AbsolutePath != "/")
                 {
                     Console.WriteLine("--Page/script request-->");
                     string request_elements = await SD.get(DB, URL_elements[0], URL_elements[1]);
-                    //string page = await SD.get(DB, URL_elements[2], URL_elements[2]);
 
                     if(request_elements == null)
                     {
@@ -143,7 +161,7 @@ namespace ScorpionHTTPServer
             if(request.Url.AbsolutePath == "/")
                 return new string[] { "/" };
             else
-                return request.Url.AbsolutePath.Split('/', StringSplitOptions.RemoveEmptyEntries);
+                return request.Url.AbsolutePath.Replace("../", "").Replace("~", "").Replace("~/", "").Split('/', StringSplitOptions.RemoveEmptyEntries);
         }
 
         public void stopServer()

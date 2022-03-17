@@ -13,6 +13,17 @@ namespace StaticElements
             "    <p><h1>:( 500 Internal server error</h1><br><hr><br>Incorrect response given. The server responded with no recognizable data.</p>" +
             "  </body>" +
             "</html>";
+        public static readonly string errorsessionPageData = 
+            "<!DOCTYPE html>" +
+            "<html>" +
+            "  <head>" +
+            "<meta charset='UTF-8'>" +
+            "    <title>500 Server error</title>" +
+            "  </head>" +
+            "  <body>" +
+            "    <p><h1>:o 500 Internal server error</h1><br><hr><br>Incorrect session given. The server responded with no recognizable session.</p>" +
+            "  </body>" +
+            "</html>";
         public static readonly string urlerrorPageData = 
             "<!DOCTYPE html>" +
             "<html>" +

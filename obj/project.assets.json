@@ -767,6 +767,16 @@
         "runtime": {
           "bin/placeholder/Scorpion-Network-Driver.dll": {}
         }
+      },
+      "SCSESSH/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/SCSESSH.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SCSESSH.dll": {}
+        }
       }
     }
   },
@@ -2878,10 +2888,16 @@
       "type": "project",
       "path": "Scorpion-Network-Driver/Scorpion-Network-Driver.csproj",
       "msbuildProject": "Scorpion-Network-Driver/Scorpion-Network-Driver.csproj"
+    },
+    "SCSESSH/1.0.0": {
+      "type": "project",
+      "path": "../Scorpion-HTTP-Sessions/SCSESSH.csproj",
+      "msbuildProject": "../Scorpion-HTTP-Sessions/SCSESSH.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "SCSESSH >= 1.0.0",
       "Scorpion-Network-Driver >= 1.0.0",
       "System.Net.Http >= 4.3.4",
       "System.Security.Cryptography.OpenSsl >= 5.0.0"
@@ -2914,6 +2930,9 @@
           "projectReferences": {
             "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj"
+            },
+            "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj"
             }
           }
         }
@@ -2952,7 +2971,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/ferret/Apps/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }

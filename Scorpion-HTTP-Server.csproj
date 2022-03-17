@@ -11,5 +11,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Scorpion-Network-Driver\Scorpion-Network-Driver.csproj" />
+    <ProjectReference Include="..\Scorpion-HTTP-Sessions\SCSESSH.csproj" />
   </ItemGroup>
 </Project>

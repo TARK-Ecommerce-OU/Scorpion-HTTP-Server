@@ -31,7 +31,7 @@ namespace ScorpionNetworkDriver
         try
         {
           //Console.WriteLine("Returning: {0}", command);
-          Console.WriteLine("\n--------DATA---------\nReturning DATA: {0}---------------------\n", nef__.replaceApiResponse(command)["data"]);
+          //Console.WriteLine("\n--------DATA---------\nReturning DATA: {0}---------------------\n", nef__.replaceApiResponse(command)["data"]);
           return nef__.replaceApiResponse(command)["data"];
         }
         catch{ return null; }
@@ -138,10 +138,11 @@ namespace ScorpionNetworkDriver
         return;
       }
 
-      public async Task<bool> post(string input)
+      //Coming up..
+      /*public async Task<bool> post(string input)
       {
         
-      }
+      }*/
 
       public async Task<string> get(string message)
       {
@@ -161,7 +162,7 @@ namespace ScorpionNetworkDriver
           //data = rSAMin.encrypt(data);
 
           stream.Write(data, 0, data.Length);
-          Console.WriteLine("\n--------SENT---------\n{0}\n---------------------\n", message);
+          //Console.WriteLine("\n--------SENT---------\n{0}\n---------------------\n", message);
           //Console.WriteLine(data[0]);
           // Receive the TcpServer.response.
 
@@ -199,7 +200,7 @@ namespace ScorpionNetworkDriver
           //data = rSAMin.decrypt(data);
 
           responseData = System.Text.Encoding.ASCII.GetString(data, 0, /*bytes*/n);
-          Console.WriteLine("\n--------RECV---------\n{0}\n---------------------\n", responseData);
+          //Console.WriteLine("\n--------RECV---------\n{0}\n---------------------\n", responseData);
 
           //Close stream.
           stream.Flush();
