@@ -58,7 +58,7 @@ namespace ScorpionHTTPServer
             //URL FORMAT GET: /project/page/hash/
 
             bool runServer = true;
-            string session;
+            string session = "";
 
             // While a user hasn't visited the `shutdown` url, keep on handling requests
             while (runServer)
@@ -78,6 +78,14 @@ namespace ScorpionHTTPServer
                 Console.WriteLine(req.UserAgent);
                 Console.WriteLine(req.RawUrl[0]);
                 Console.WriteLine(req.Url.AbsolutePath);
+
+
+                // Make sure we don't increment the page views counter if `favicon.ico` is requested
+                //Ignore favico for now
+                if (req.Url.AbsolutePath != "/favicon.ico")
+                    pageViews += 1;
+                else
+                    continue;
 
                 //Create a workable string out of the url seperating elements withing '/'
                 string[] URL_elements = getPathElements(req);
@@ -115,18 +123,12 @@ namespace ScorpionHTTPServer
                     Console.WriteLine("--Input request-->");
                     continue;
                 }
-
-                // Make sure we don't increment the page views counter if `favicon.ico` is requested
-                if (req.Url.AbsolutePath != "/favicon.ico")
-                    pageViews += 1;
-                else
-                    continue;
                 
                 //Page GET request: /Project/Page/Hash
                 if(req.Url.AbsolutePath != "/")
                 {
                     Console.WriteLine("--Page/script request-->");
-                    string request_elements = await SD.get(DB, URL_elements[0], URL_elements[1]);
+                    string request_elements = await SD.get(DB, URL_elements[0], URL_elements[1], session);
 
                     if(request_elements == null)
                     {
