@@ -178,6 +178,15 @@
           }
         }
       },
+      "SimpleTCP.Net5/1.0.25": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/SimpleTCP.Net5.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/SimpleTCP.Net5.dll": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -768,6 +777,19 @@
           "bin/placeholder/Scorpion-Network-Driver.dll": {}
         }
       },
+      "scorpion_p2p/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "SimpleTCP.Net5": "1.0.25"
+        },
+        "compile": {
+          "bin/placeholder/scorpion_p2p.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/scorpion_p2p.dll": {}
+        }
+      },
       "SCSESSH/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -1019,6 +1041,18 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "SimpleTCP.Net5/1.0.25": {
+      "sha512": "TH8ahdqk0xrYVKeJZZOa7EXr0oIHh+2BgzfjNHwnarS3LdompN177uvmHST/LOXpNh9OCHWjJ/o3XaHgqSjykg==",
+      "type": "package",
+      "path": "simpletcp.net5/1.0.25",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/SimpleTCP.Net5.dll",
+        "simpletcp.net5.1.0.25.nupkg.sha512",
+        "simpletcp.net5.nuspec"
       ]
     },
     "System.Collections/4.3.0": {
@@ -2889,6 +2923,11 @@
       "path": "Scorpion-Network-Driver/Scorpion-Network-Driver.csproj",
       "msbuildProject": "Scorpion-Network-Driver/Scorpion-Network-Driver.csproj"
     },
+    "scorpion_p2p/1.0.0": {
+      "type": "project",
+      "path": "../scorpion_P2P/scorpion_p2p/scorpion_p2p.csproj",
+      "msbuildProject": "../scorpion_P2P/scorpion_p2p/scorpion_p2p.csproj"
+    },
     "SCSESSH/1.0.0": {
       "type": "project",
       "path": "../Scorpion-HTTP-Sessions/SCSESSH.csproj",
@@ -2900,7 +2939,8 @@
       "SCSESSH >= 1.0.0",
       "Scorpion-Network-Driver >= 1.0.0",
       "System.Net.Http >= 4.3.4",
-      "System.Security.Cryptography.OpenSsl >= 5.0.0"
+      "System.Security.Cryptography.OpenSsl >= 5.0.0",
+      "scorpion_p2p >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2933,6 +2973,9 @@
             },
             "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj"
+            },
+            "/home/ferret/GIT/scorpion_P2P/scorpion_p2p/scorpion_p2p.csproj": {
+              "projectPath": "/home/ferret/GIT/scorpion_P2P/scorpion_p2p/scorpion_p2p.csproj"
             }
           }
         }

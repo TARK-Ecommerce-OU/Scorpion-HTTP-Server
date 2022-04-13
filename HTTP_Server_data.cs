@@ -2,44 +2,46 @@ namespace StaticElements
 {
     public static class StaticElements
     {
-        public static readonly string errorPageData = 
+        public static readonly string kerror_page_data = 
             "<!DOCTYPE html>" +
             "<html>" +
             "  <head>" +
             "<meta charset='UTF-8'>" +
-            "    <title>500 Server error</title>" +
+            "    <title>204 No content</title>" +
             "  </head>" +
             "  <body>" +
-            "    <p><h1>:( 500 Internal server error</h1><br><hr><br>Incorrect response given. The server responded with no recognizable data.</p>" +
+            "    <p><h1>:( 204 No content</h1><br><hr><br>Type: Data<br>Code: 204<br>Message: Incorrect response given. The server responded with no recognizable data.</p>" +
             "  </body>" +
             "</html>";
-        public static readonly string errorsessionPageData = 
+        public static readonly string kerror_session_page_data = 
             "<!DOCTYPE html>" +
             "<html>" +
             "  <head>" +
             "<meta charset='UTF-8'>" +
-            "    <title>500 Server error</title>" +
+            "    <title>202 Session error</title>" +
             "  </head>" +
             "  <body>" +
-            "    <p><h1>:o 500 Internal server error</h1><br><hr><br>Incorrect session given. The server responded with no recognizable session.</p>" +
+            "    <p><h1>:o 202 Session error</h1><br><hr><br>Type: Session<br>Code: 202<br>Message: Incorrect session given. The server responded with no recognizable session.</p>" +
             "  </body>" +
             "</html>";
-        public static readonly string urlerrorPageData = 
+        public static readonly string kurl_error_page_data = 
             "<!DOCTYPE html>" +
             "<html>" +
             "  <head>" +
             "<meta charset='UTF-8'>" +
-            "    <title>500 : Server error</title>" +
+            "    <title>500 request error</title>" +
             "  </head>" +
             "  <body>" +
-            "    <p><h1>:( 500 Internal server error</h1><br><hr><br>URL parameters incorrect. 2 parameters expected, less given.</p>" +
+            "    <p><h1>:( 500 Internal request error</h1><br><hr><br>Type: Request<br>Code: 500<br>Message: URL parameters incorrect. 2 parameters expected, less given.</p>" +
             "  </body>" +
             "</html>";
 
-        public static string developmentFormatData =
-            "<!DOCTYPE html><html><head><meta charset='UTF-8'><script src='https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js'></script><script src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'></script></head><body>{0}</body></html>";
+        public static readonly string kredirect_new_session = "<meta http-equiv=\"Refresh\" content=\"0; url='{0}'\"/>";
 
-        public static string productionFormatData = 
-            "<!DOCTYPE html><html><head><meta charset='UTF-8'><script src='https://cdn.jsdelivr.net/npm/vue@2'></script><script src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'></script></head><body>{0}</body></html>";
+        public static string kdevelopment_format_data =
+            "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>{0}</body></html>";
+
+        public static string kproduction_format_data = 
+            "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>{0}</body></html>";
     }
 }

@@ -11,7 +11,8 @@
           "SCSESSH": "1.0.0",
           "Scorpion-Network-Driver": "1.0.0",
           "System.Net.Http": "4.3.4",
-          "System.Security.Cryptography.OpenSsl": "5.0.0"
+          "System.Security.Cryptography.OpenSsl": "5.0.0",
+          "scorpion_p2p": "1.0.0"
         },
         "runtime": {
           "Scorpion-HTTP-Server.dll": {}
@@ -61,6 +62,14 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
+      "SimpleTCP.Net5/1.0.25": {
+        "runtime": {
+          "lib/net5.0/SimpleTCP.Net5.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "System.Collections/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.1",
@@ -406,6 +415,14 @@
           "Scorpion-Network-Driver.dll": {}
         }
       },
+      "scorpion_p2p/1.0.0": {
+        "dependencies": {
+          "SimpleTCP.Net5": "1.0.25"
+        },
+        "runtime": {
+          "scorpion_p2p.dll": {}
+        }
+      },
       "SCSESSH/1.0.0": {
         "runtime": {
           "SCSESSH.dll": {}
@@ -537,6 +554,13 @@
       "sha512": "sha512-leXiwfiIkW7Gmn7cgnNcdtNAU70SjmKW3jxGj1iKHOvdn0zRWsgv/l2OJUO5zdGdiv2VRFnAsxxhDgMzofPdWg==",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.2",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512"
+    },
+    "SimpleTCP.Net5/1.0.25": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TH8ahdqk0xrYVKeJZZOa7EXr0oIHh+2BgzfjNHwnarS3LdompN177uvmHST/LOXpNh9OCHWjJ/o3XaHgqSjykg==",
+      "path": "simpletcp.net5/1.0.25",
+      "hashPath": "simpletcp.net5.1.0.25.nupkg.sha512"
     },
     "System.Collections/4.3.0": {
       "type": "package",
@@ -770,6 +794,11 @@
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
     },
     "Scorpion-Network-Driver/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "scorpion_p2p/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

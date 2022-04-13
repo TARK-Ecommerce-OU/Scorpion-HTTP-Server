@@ -42,7 +42,7 @@ namespace ScorpionHTTPServer
             Console.WriteLine("HTTP server started with prefix: {0}", prefix);
 
             //Handle incomming connections
-            Task listen_task = handleIncomingConnections(); 
+            Task listen_task = Serve(); 
             listen_task.GetAwaiter().GetResult();
             Console.WriteLine("Awaiting connections...");
 
@@ -53,7 +53,7 @@ namespace ScorpionHTTPServer
             return true;
         }
 
-        public static async Task handleIncomingConnections()
+        public static async Task Serve()
         {
             //URL FORMAT GET: /project/page/hash/
 
@@ -90,29 +90,29 @@ namespace ScorpionHTTPServer
                 //Create a workable string out of the url seperating elements withing '/'
                 string[] URL_elements = getPathElements(req);
 
-                //Check if user hash exists, if not apply a new one
-                if(URL_elements.Length < 3)
-                    //If there is no hash, create new
-                    session = scorpion_sessions.newSession(URL_elements[0]);
-                else
-                {
-                    //If there is a hash, get path
-                    if(!scorpion_sessions.verifySession(URL_elements[2]))
-                    {
-                        await writeResponse(Encoding.UTF8.GetBytes(StaticElements.StaticElements.errorPageData), resp);
-                        continue;
-                    }
-                }
-
                 //Response vars
                 string disableSubmit = !runServer ? "disabled" : "";
                 byte[] data = null;
 
-                //If url not long enough error
-                if(URL_elements.Length < 2)
+                //If the URL does not atleast contain 2 consecutive items: /project/page/
+                if(URL_elements.Length < 1)
                 {
-                    data = Encoding.UTF8.GetBytes(StaticElements.StaticElements.urlerrorPageData);
+                    data = Encoding.UTF8.GetBytes(StaticElements.StaticElements.kurl_error_page_data);
                     await writeResponse(data, resp);
+                    continue;
+                }
+
+                //Checks whether the session passed at URL_elements[3] exists if none is passed it auto creates a new one else it defaults to an error page
+                if((session = checkSession(ref URL_elements)) == null)
+                {
+                    Console.WriteLine("Incorrect session {0}", URL_elements[2]);
+                    await writeResponse(Encoding.UTF8.GetBytes(StaticElements.StaticElements.kerror_session_page_data), resp);
+                    continue;
+                }
+                //If a new session is created redirect the page with the new URL including /session/ and continue to serve next request
+                if(URL_elements.Length < 2)
+                {   //NOTWORKING!
+                    await writeResponse(Encoding.UTF8.GetBytes(String.Format(StaticElements.StaticElements.kredirect_new_session, session)), resp);
                     continue;
                 }
 
@@ -132,14 +132,24 @@ namespace ScorpionHTTPServer
 
                     if(request_elements == null)
                     {
-                        Console.WriteLine("Incorrect response given, sending 500 page");
-                        data = Encoding.UTF8.GetBytes(StaticElements.StaticElements.errorPageData);
+                        Console.WriteLine("Incorrect Scorpion IEE response given, sending error page");
+                        data = Encoding.UTF8.GetBytes(StaticElements.StaticElements.kerror_page_data);
                     }
                     else
-                        data = Encoding.UTF8.GetBytes(string.Format(StaticElements.StaticElements.developmentFormatData, (request_elements == null ? "" : request_elements)));
+                        data = Encoding.UTF8.GetBytes(string.Format(StaticElements.StaticElements.kdevelopment_format_data, (request_elements == null ? "" : request_elements)));
                 }
                 await writeResponse(data, resp);
             }
+        }
+
+        private static string checkSession(ref string[] URL_elements)
+        {
+            //Check if a user token was passed if not apply a new one. If it was passed verify it
+            if(URL_elements.Length < 3)
+                return scorpion_sessions.newSession(URL_elements[0]);
+            else if(scorpion_sessions.verifySession(URL_elements[2]))
+                    return URL_elements[2];
+            return null;
         }
 
         public static async Task writeResponse(byte[] data, HttpListenerResponse resp)

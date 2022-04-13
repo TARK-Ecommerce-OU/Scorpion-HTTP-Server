@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4iMybceJH8usHLnsNWuuoRdGPSaj555xh98H0HuTXy85xh/qpVJ/MZ+2DHE1IwMxfzrYntIIBKaZK9ZuwmV26Q==",
+  "dgSpecHash": "+NY4iChCys5xw8TGi4QM2NR+If+dTQfm4m8jhZiB45jYHavQaYnlR97LHQSIEbV/tJIiDws/gwEU2xsJ8/4Zhg==",
   "success": true,
   "projectFilePath": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-HTTP-Server.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,7 @@
     "/home/ferret/.nuget/packages/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/home/ferret/.nuget/packages/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/home/ferret/.nuget/packages/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
+    "/home/ferret/.nuget/packages/simpletcp.net5/1.0.25/simpletcp.net5.1.0.25.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.collections/4.3.0/system.collections.4.3.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.collections.concurrent/4.3.0/system.collections.concurrent.4.3.0.nupkg.sha512",
     "/home/ferret/.nuget/packages/system.diagnostics.debug/4.3.0/system.diagnostics.debug.4.3.0.nupkg.sha512",
