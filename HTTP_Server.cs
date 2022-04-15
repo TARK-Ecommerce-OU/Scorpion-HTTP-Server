@@ -21,7 +21,7 @@ namespace ScorpionHTTPServer
         {
             //Start the scorpion driver in order to get data from MicroDB
             SD = new ScorpionDriver(scorpion_host, scorpion_port);
-            scorpion_sessions = new ScorpionHttpSessions.ScorpionHttpSessions();
+            scorpion_sessions = new ScorpionHttpSessions.ScorpionHttpSessions(scorpion_host, scorpion_port);
             DB = scorpion_db;
 
             //Start the HTTP server

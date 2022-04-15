@@ -10,8 +10,8 @@
     <PackageReference Include="System.Security.Cryptography.OpenSsl" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Scorpion-Network-Driver\Scorpion-Network-Driver.csproj" />
     <ProjectReference Include="..\Scorpion-HTTP-Sessions\SCSESSH.csproj" />
     <ProjectReference Include="..\scorpion_P2P\scorpion_p2p\scorpion_p2p.csproj" />
+    <ProjectReference Include="..\Scorpion-Network-Driver\scorpion_network_driver\scorpion_network_driver.csproj" />
   </ItemGroup>
 </Project>

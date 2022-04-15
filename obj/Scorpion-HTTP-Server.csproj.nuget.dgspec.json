@@ -26,11 +26,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj": {
-                "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj"
-              },
               "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj": {
                 "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj"
+              },
+              "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj"
               },
               "/home/ferret/GIT/scorpion_P2P/scorpion_p2p/scorpion_p2p.csproj": {
                 "projectPath": "/home/ferret/GIT/scorpion_P2P/scorpion_p2p/scorpion_p2p.csproj"
@@ -76,14 +76,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj": {
+    "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj",
-        "projectName": "Scorpion-Network-Driver",
-        "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj",
+        "projectName": "SCSESSH",
+        "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/obj/",
+        "outputPath": "/home/ferret/GIT/Scorpion-HTTP-Sessions/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"
@@ -97,7 +97,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj": {
+                "projectPath": "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -109,12 +113,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "System.Security.Cryptography.OpenSsl": {
-              "target": "Package",
-              "version": "[5.0.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -134,14 +132,14 @@
         }
       }
     },
-    "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj": {
+    "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj",
-        "projectName": "SCSESSH",
-        "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj",
+        "projectUniqueName": "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj",
+        "projectName": "scorpion_network_driver",
+        "projectPath": "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj",
         "packagesPath": "/home/ferret/.nuget/packages/",
-        "outputPath": "/home/ferret/GIT/Scorpion-HTTP-Sessions/obj/",
+        "outputPath": "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ferret/.nuget/NuGet/NuGet.Config"

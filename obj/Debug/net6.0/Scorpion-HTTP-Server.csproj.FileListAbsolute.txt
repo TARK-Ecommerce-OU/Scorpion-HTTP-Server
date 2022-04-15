@@ -4,8 +4,6 @@
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/Scorpion-HTTP-Server.dll
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/ref/Scorpion-HTTP-Server.dll
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/Scorpion-HTTP-Server.pdb
-/home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/Scorpion-Network-Driver.dll
-/home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/Scorpion-Network-Driver.pdb
 /home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net6.0/Scorpion-HTTP-Server.csproj.AssemblyReference.cache
 /home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net6.0/Scorpion-HTTP-Server.GeneratedMSBuildEditorConfig.editorconfig
 /home/ferret/GIT/Scorpion-HTTP-Server/obj/Debug/net6.0/Scorpion-HTTP-Server.AssemblyInfoInputs.cache
@@ -21,3 +19,5 @@
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/SimpleTCP.Net5.dll
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/scorpion_p2p.dll
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/scorpion_p2p.pdb
+/home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/scorpion_network_driver.dll
+/home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/scorpion_network_driver.pdb

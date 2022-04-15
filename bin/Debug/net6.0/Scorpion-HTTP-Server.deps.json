@@ -9,9 +9,9 @@
       "Scorpion-HTTP-Server/1.0.0": {
         "dependencies": {
           "SCSESSH": "1.0.0",
-          "Scorpion-Network-Driver": "1.0.0",
           "System.Net.Http": "4.3.4",
           "System.Security.Cryptography.OpenSsl": "5.0.0",
+          "scorpion_network_driver": "1.0.0",
           "scorpion_p2p": "1.0.0"
         },
         "runtime": {
@@ -407,12 +407,9 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "Scorpion-Network-Driver/1.0.0": {
-        "dependencies": {
-          "System.Security.Cryptography.OpenSsl": "5.0.0"
-        },
+      "scorpion_network_driver/1.0.0": {
         "runtime": {
-          "Scorpion-Network-Driver.dll": {}
+          "scorpion_network_driver.dll": {}
         }
       },
       "scorpion_p2p/1.0.0": {
@@ -424,6 +421,9 @@
         }
       },
       "SCSESSH/1.0.0": {
+        "dependencies": {
+          "scorpion_network_driver": "1.0.0"
+        },
         "runtime": {
           "SCSESSH.dll": {}
         }
@@ -793,7 +793,7 @@
       "path": "system.threading.tasks/4.3.0",
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
     },
-    "Scorpion-Network-Driver/1.0.0": {
+    "scorpion_network_driver/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

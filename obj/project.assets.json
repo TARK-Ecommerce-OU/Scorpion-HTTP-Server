@@ -764,17 +764,14 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
-      "Scorpion-Network-Driver/1.0.0": {
+      "scorpion_network_driver/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "System.Security.Cryptography.OpenSsl": "5.0.0"
-        },
         "compile": {
-          "bin/placeholder/Scorpion-Network-Driver.dll": {}
+          "bin/placeholder/scorpion_network_driver.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Scorpion-Network-Driver.dll": {}
+          "bin/placeholder/scorpion_network_driver.dll": {}
         }
       },
       "scorpion_p2p/1.0.0": {
@@ -793,6 +790,9 @@
       "SCSESSH/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "scorpion_network_driver": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/SCSESSH.dll": {}
         },
@@ -2918,10 +2918,10 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "Scorpion-Network-Driver/1.0.0": {
+    "scorpion_network_driver/1.0.0": {
       "type": "project",
-      "path": "Scorpion-Network-Driver/Scorpion-Network-Driver.csproj",
-      "msbuildProject": "Scorpion-Network-Driver/Scorpion-Network-Driver.csproj"
+      "path": "../Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj",
+      "msbuildProject": "../Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj"
     },
     "scorpion_p2p/1.0.0": {
       "type": "project",
@@ -2937,9 +2937,9 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "SCSESSH >= 1.0.0",
-      "Scorpion-Network-Driver >= 1.0.0",
       "System.Net.Http >= 4.3.4",
       "System.Security.Cryptography.OpenSsl >= 5.0.0",
+      "scorpion_network_driver >= 1.0.0",
       "scorpion_p2p >= 1.0.0"
     ]
   },
@@ -2968,11 +2968,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj": {
-              "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-Network-Driver/Scorpion-Network-Driver.csproj"
-            },
             "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj"
+            },
+            "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj"
             },
             "/home/ferret/GIT/scorpion_P2P/scorpion_p2p/scorpion_p2p.csproj": {
               "projectPath": "/home/ferret/GIT/scorpion_P2P/scorpion_p2p/scorpion_p2p.csproj"
