@@ -1,9 +1,20 @@
+using System.IO;
+
 namespace StaticElements
 {
     public static class StaticElements
     {
+        public static string default_js = 
+        File.ReadAllText("./Data/DefaultAjax.js");
+
+        public static string js_forms =
+        File.ReadAllText("./Data/JSForms.js");
+
+        public static string js_session = 
+        "const token='{0}'; const project='{1}'";
+
         public static readonly string kerror_page_data = 
-            "<!DOCTYPE html>" +
+            @"<!DOCTYPE html>" +
             "<html>" +
             "  <head>" +
             "<meta charset='UTF-8'>" +
@@ -14,7 +25,7 @@ namespace StaticElements
             "  </body>" +
             "</html>";
         public static readonly string kerror_session_page_data = 
-            "<!DOCTYPE html>" +
+            @"<!DOCTYPE html>" +
             "<html>" +
             "  <head>" +
             "<meta charset='UTF-8'>" +
@@ -25,7 +36,7 @@ namespace StaticElements
             "  </body>" +
             "</html>";
         public static readonly string kurl_error_page_data = 
-            "<!DOCTYPE html>" +
+            @"<!DOCTYPE html>" +
             "<html>" +
             "  <head>" +
             "<meta charset='UTF-8'>" +
@@ -39,9 +50,9 @@ namespace StaticElements
         public static readonly string kredirect_new_session = "<meta http-equiv=\"Refresh\" content=\"0; url='{0}'\"/>";
 
         public static string kdevelopment_format_data =
-            "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>{0}</body></html>";
+            "<!DOCTYPE html><html><script>{1}</script><script>{2}</script><head><meta charset='UTF-8'></head><body>{0}</body></html>";
 
         public static string kproduction_format_data = 
-            "<!DOCTYPE html><html><head><meta charset='UTF-8'></head><body>{0}</body></html>";
+            "<!DOCTYPE html><html><script>{1}</script><script>{2}</script><head><meta charset='UTF-8'></head><body>{0}</body></html>";
     }
 }

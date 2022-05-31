@@ -17,10 +17,10 @@ namespace ScorpionHTTPServer
                 command = Console.ReadLine().ToLower();
                 if(command == "start")
                 {
-                    if(args.Length == 4)
-                        http_server = new HTTPServer(args[0], args[1], Convert.ToInt32(args[2]), args[3]);
+                    if(args.Length == 5)
+                        http_server = new HTTPServer(args[0], args[1], Convert.ToInt32(args[2]), args[3], Convert.ToBoolean(args[4]));
                     else
-                        Console.WriteLine("The 'start' command was issued with the wrong set of arguments. Required arguments are: <prefix> <scorpion IEE server IP> <scorpion IEE port> <database name>");
+                        Console.WriteLine("The 'start' command was issued with the wrong set of arguments. Required arguments are: <prefix> <scorpion IEE server IP> <scorpion IEE port> <database name> <debug: true/false>");
                 }
             }
         }
