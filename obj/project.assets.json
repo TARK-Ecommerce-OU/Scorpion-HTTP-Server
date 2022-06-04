@@ -20,6 +20,15 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Newtonsoft.Json/13.0.2-beta1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
         "type": "package",
         "runtimeTargets": {
@@ -764,6 +773,16 @@
           "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
+      "consolereadwrite/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/consolereadwrite.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/consolereadwrite.dll": {}
+        }
+      },
       "scorpion_network_driver/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -831,6 +850,36 @@
         "microsoft.netcore.targets.1.1.0.nupkg.sha512",
         "microsoft.netcore.targets.nuspec",
         "runtime.json"
+      ]
+    },
+    "Newtonsoft.Json/13.0.2-beta1": {
+      "sha512": "lrHT3bmqM13QHvgtj2Y30BCRsq6lX07klW5tScx2B7ihqWeG6aVXrHxVALN34+boed9ybVtlRFLOuKD44Xuttg==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.2-beta1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.2-beta1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {
@@ -2918,6 +2967,11 @@
         "system.threading.tasks.nuspec"
       ]
     },
+    "consolereadwrite/1.0.0": {
+      "type": "project",
+      "path": "../Scorpion-Console-Read-Write/consolereadwrite.csproj",
+      "msbuildProject": "../Scorpion-Console-Read-Write/consolereadwrite.csproj"
+    },
     "scorpion_network_driver/1.0.0": {
       "type": "project",
       "path": "../Scorpion-Network-Driver/scorpion_network_driver/scorpion_network_driver.csproj",
@@ -2936,9 +2990,11 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Newtonsoft.Json >= 13.0.2-beta1",
       "SCSESSH >= 1.0.0",
       "System.Net.Http >= 4.3.4",
       "System.Security.Cryptography.OpenSsl >= 5.0.0",
+      "consolereadwrite >= 1.0.0",
       "scorpion_network_driver >= 1.0.0",
       "scorpion_p2p >= 1.0.0"
     ]
@@ -2968,6 +3024,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "/home/ferret/GIT/Scorpion-Console-Read-Write/consolereadwrite.csproj": {
+              "projectPath": "/home/ferret/GIT/Scorpion-Console-Read-Write/consolereadwrite.csproj"
+            },
             "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj": {
               "projectPath": "/home/ferret/GIT/Scorpion-HTTP-Sessions/SCSESSH.csproj"
             },
@@ -2990,6 +3049,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.2-beta1, )"
+          },
           "System.Net.Http": {
             "target": "Package",
             "version": "[4.3.4, )"

@@ -1,4 +1,5 @@
 ﻿using System;
+using ScorpionConsoleReadWrite;
 
 namespace ScorpionHTTPServer
 {
@@ -6,28 +7,27 @@ namespace ScorpionHTTPServer
     {
         //The main HTTP server serving this application
         private static HTTPServer http_server;
+        private const double kversion = 0.1;
+
         static void Main(string[] args)
         {
             Console.CancelKeyPress += Console_CancelKeyPress;
-            Console.WriteLine("Scorpion HTTP Server version {0}", System.Reflection.Assembly.GetExecutingAssembly().ImageRuntimeVersion);
-            string command = null;
-
-            while(true)
-            {
-                command = Console.ReadLine().ToLower();
-                if(command == "start")
-                {
-                    if(args.Length == 5)
-                        http_server = new HTTPServer(args[0], args[1], Convert.ToInt32(args[2]), args[3], Convert.ToBoolean(args[4]));
-                    else
-                        Console.WriteLine("The 'start' command was issued with the wrong set of arguments. Required arguments are: <prefix> <scorpion IEE server IP> <scorpion IEE port> <database name> <debug: true/false>");
-                }
-            }
+            ConsoleWrite.writeSpecial($"Scorpion HTTP Server version {kversion}\n--------------------------------\n");
+            ConsoleWrite.writeOutput("Enter the URL for the server (To which requests to your domain name will be forwarded to OR 'null' for default http://loopback:8000):");
+            string url = Console.ReadLine();
+            ConsoleWrite.writeOutput("Enter the Scorpion IEE tcp server ip address:");
+            string scorpion_ip = Console.ReadLine();
+            ConsoleWrite.writeOutput("Enter the Scorpion IEE tcp server port:");
+            int port = Convert.ToInt32(Console.ReadLine());
+            ConsoleWrite.writeOutput("Enter the Scorpion IEE XMLDB database to use for static content:");
+            string database = Console.ReadLine();
+            http_server = new HTTPServer(url, scorpion_ip, Convert.ToInt32(port), database);         
         }
 
         static void Console_CancelKeyPress(object o, ConsoleCancelEventArgs e)
         {
-            Console.WriteLine("Interrupt Signal. Exiting...");
+            //ADD TCP and HTTP kill()
+            ConsoleWrite.writeOutput("Interrupt Signal. Exiting...");
             Environment.Exit(0);
         }
     }

@@ -13,6 +13,8 @@ namespace StaticElements
         public static string js_session = 
         "const token='{0}'; const project='{1}'";
 
+        public static readonly string accept_type_json = "application/json";
+
         public static readonly string kerror_page_data = 
             @"<!DOCTYPE html>" +
             "<html>" +

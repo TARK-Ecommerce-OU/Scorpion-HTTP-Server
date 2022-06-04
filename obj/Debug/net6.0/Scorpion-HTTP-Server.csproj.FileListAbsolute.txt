@@ -21,3 +21,6 @@
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/scorpion_p2p.pdb
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/scorpion_network_driver.dll
 /home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/scorpion_network_driver.pdb
+/home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/Newtonsoft.Json.dll
+/home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/consolereadwrite.dll
+/home/ferret/GIT/Scorpion-HTTP-Server/bin/Debug/net6.0/consolereadwrite.pdb

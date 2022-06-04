@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "LTKD/i7dtbqMz/Z+chiGBdM96CSU+IIMzWHCg/5FQkItgHgC4jsHBu6DYCVIBcksgIlRt5is5BErac+hbQyqsA==",
+  "dgSpecHash": "V3IoALnmcmBtL2BXgKrk9HuI9nGkdtNNNt37N1SpJamQ+atTFMMAvw+Am45uBvJWZJA2nKJPvbmB6Uw/Z9h95A==",
   "success": true,
   "projectFilePath": "/home/ferret/GIT/Scorpion-HTTP-Server/Scorpion-HTTP-Server.csproj",
   "expectedPackageFiles": [
     "/home/ferret/.nuget/packages/microsoft.netcore.platforms/1.1.1/microsoft.netcore.platforms.1.1.1.nupkg.sha512",
     "/home/ferret/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "/home/ferret/.nuget/packages/newtonsoft.json/13.0.2-beta1/newtonsoft.json.13.0.2-beta1.nupkg.sha512",
     "/home/ferret/.nuget/packages/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/home/ferret/.nuget/packages/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "/home/ferret/.nuget/packages/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl/4.3.2/runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
